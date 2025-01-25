@@ -19,3 +19,7 @@
     <!--end::Container-->
   </div>
 @endsection
+
+
+@section('content')
+@endsection
