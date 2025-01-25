@@ -82,7 +82,8 @@ class DataSiswaController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $data = DB::table('data_siswa')->where('data_siswa', $id)->first();
+        return view('data_siswa.edit', compact('data'));
     }
 
     /**
@@ -90,7 +91,43 @@ class DataSiswaController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate ([
+            'nama' => 'required',
+            'nisn' => 'required',
+            'nik' => 'required',
+            'tempat_lahir' => 'required',
+            'tanggal_lahir' => 'required',
+            'jenis_kelamin' => 'required',
+            'agama' => 'required',
+            'alamat' => 'required',
+            'asal_sekolah' => 'required',
+            'anak_ke' => 'required',
+            'tb' => 'required',
+            'bb' => 'required',
+            'golongan_darah' => 'required',
+            'telepon' => 'required',
+               ]);
+
+               $data = [
+                'nama' => $request->nama,
+                'nisn' => $request->nisn,
+                'nik' => $request->nik,
+                'tempat_lahir' => $request->tempat_lahir,
+                'tanggal_lahir' => $request->tanggal_lahir,
+                'jenis_kelamin' => $request->jenis_kelamin,
+                'agama' => $request->agama,
+                'alamat' => $request->alamat,
+                'asal_sekolah' => $request->asal_sekolah,
+                'anak_ke' => $request->anak_ke,
+                'tb' => $request->tb,
+                'bb' => $request->bb,
+                'golongan_darah' => $request->golongan_darah,
+                'telepon' => $request->telepon,
+               ];
+
+               DB::table('data_siswa')->where('data_siswa', $id)->update($data);
+               return redirect()->view('data_siswa.index');
+
     }
 
     /**

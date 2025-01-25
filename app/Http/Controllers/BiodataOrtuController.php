@@ -79,7 +79,30 @@ class BiodataOrtuController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate ([
+            'nama_ayah' => 'required',
+            'nama_ibu' => 'required',
+            'pekerjaan_ayah' => 'required',
+            'pekerjaan_ibu' => 'required',
+            'alamat' => 'required',
+            'agama' => 'required',
+            'pendidikan_terakhir' => 'required',
+            'telepon' => 'required',
+           ]);
+
+           $data = [
+            'nama_ayah' => $request->nama_ayah,
+            'nama_ibu' => $request->nama_ibu,
+            'pekerjaan_ayah' => $request->pekerjaan_ayah,
+            'pekerjaan_ibu' => $request->pekerjaan_ibu,
+            'alamat' => $request->alamat,
+            'agama' => $request->agama,
+            'pendidikan_terakhir' => $request->pendidikan_terakhir,
+            'telepon' => $request->telepon,
+           ];
+
+           DB::table('biodata_ortu')->where('biodata_ortu', $id)->update($data);
+           return redirect()->view('biodata_ortu.index');
     }
 
     /**

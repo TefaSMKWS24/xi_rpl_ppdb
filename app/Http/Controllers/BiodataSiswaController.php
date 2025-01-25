@@ -70,7 +70,8 @@ class BiodataSiswaController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $data = DB::table('biodata_siswa')->where('biodata_siswa', $id)->first();
+       return view('biodata_siswa.edit', compact('data'));
     }
 
     /**
@@ -78,8 +79,31 @@ class BiodataSiswaController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
-    }
+        $request->validate ([
+            'nama' => 'required',
+            'jenis_kelamin' => 'required',
+            'tanggal_lahir' => 'required',
+            'tempat_lahir' => 'required',
+            'kewarganegaraan' => 'required',
+            'agama' => 'required',
+            'alamat' => 'required',
+            'foto' => 'required',
+           ]);
+
+           $data = [
+            'nama' => $request->nama,
+            'jenis_kelamin' => $request->jenis_kelamin,
+            'tanggal_lahir' => $request->tanggal_lahir,
+            'tempat_lahir' => $request->tempat_lahir,
+            'kewarganegaraan' => $request->kewarganegaraan,
+            'agama' => $request->agama,
+            'alamat' => $request->alamat,
+            'foto' => $request->foto,
+           ];
+
+           DB::table('biodata_siswa')->where('biodata_siswa', $id)->update($data);
+           return redirect()->view('biodata_siswa.index');
+        }
 
     /**
      * Remove the specified resource from storage.

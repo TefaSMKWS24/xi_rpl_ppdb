@@ -61,15 +61,32 @@ class DataPendidikanController extends Controller
      */
     public function edit(string $id)
     {
-        //
-    }
+        $data = DB::table('data_pendidikan')->where('data_pendidikan', $id)->first();
+        return view('data_pendidikan.edit', compact('data'));
+     }
+
 
     /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate ([
+            'diterima_disekolah_tanggal' => 'required',
+            'jurusan' => 'required',
+            'kelas' => 'required',
+
+           ]);
+
+           $data = [
+            'diterima_disekolah_tanggal' => $request->diterima_disekolah_tanggal,
+            'jurusan' => $request->jurusan,
+            'kelas' => $request->kelas,
+           ];
+
+           DB::table('data_pendidikan')->where('data_pendidikan', $id)->update($data);
+           return redirect()->view('data_pendidikan.index');
+
     }
 
     /**

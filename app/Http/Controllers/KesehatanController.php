@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\redirect;
+use Illuminate\Support\Facades\validator;
 
 class KesehatanController extends Controller
 {
@@ -27,7 +30,23 @@ class KesehatanController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate ([
+            'gol_darah' => 'required',
+            'tb' => 'required',
+            'bb' => 'required',
+            'penyakit_yang_pernah_diderita' => 'required',
+           ]);
+
+           $data = [
+            'gol_darah' => $request->gol_darah,
+            'tb' => $request->tb,
+            'bb' => $request->bb,
+            'penyakit_yang_pernah_diderita' => $request->penyakit_yang_pernah_diderita,
+           ];
+
+           DB::table('kesehatan')->insert($data);
+
+           return redirect()->view('kesehatan.index');
     }
 
     /**
@@ -43,7 +62,8 @@ class KesehatanController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $data = DB::table('kesehatan')->where('kesehatan', $id)->first();
+        return view('kesehatan.edit', compact('data'));
     }
 
     /**
@@ -51,7 +71,22 @@ class KesehatanController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate ([
+            'gol_darah' => 'required',
+            'tb' => 'required',
+            'bb' => 'required',
+            'penyakit_yang_pernah_diderita' => 'required',
+           ]);
+
+           $data = [
+            'gol_darah' => $request->gol_darah,
+            'tb' => $request->tb,
+            'bb' => $request->bb,
+            'penyakit_yang_pernah_diderita' => $request->penyakit_yang_pernah_diderita,
+           ];
+           DB::table('kesehatan')->where('kesehatan', $id)->update($data);
+           return redirect()->view('kesehatan.index');
+
     }
 
     /**

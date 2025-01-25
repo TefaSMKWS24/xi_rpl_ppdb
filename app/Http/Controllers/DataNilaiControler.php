@@ -59,7 +59,8 @@ class DataNilaiControler extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $data = DB::table('data_nilai')->where('data_nilai', $id)->first();
+       return view('data_nilai.edit', compact('data'));
     }
 
     /**
@@ -67,7 +68,20 @@ class DataNilaiControler extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate ([
+            'mapel' => 'required',
+            'semester' => 'required',
+
+           ]);
+
+           $data = [
+            'mapel' => $request->mapel,
+            'semester' => $request->semester,
+           ];
+
+           DB::table('data_nilai')->where('data_nilai', $id)->update($data);
+           return redirect()->view('data_nilai.index');
+
     }
 
     /**

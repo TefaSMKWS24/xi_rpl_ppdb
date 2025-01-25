@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\redirect;
+use Illuminate\Support\Facades\validator;
 
 class TabelBerkarController extends Controller
 {
@@ -27,7 +30,23 @@ class TabelBerkarController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate ([
+            'kk' => 'required',
+            'ijazah' => 'required',
+            'akta' => 'required',
+            'ktp_ortu' => 'required',
+           ]);
+
+           $data = [
+            'kk' => $request->kk,
+            'ijazah' => $request->ijazah,
+            'akta' => $request->akta,
+            'ktp_ortu' => $request->ktp_ortu,
+           ];
+
+           DB::table('tabel_berkas')->insert($data);
+
+           return redirect()->view('tabel_berkas');
     }
 
     /**
@@ -43,7 +62,8 @@ class TabelBerkarController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $data = DB::table('tabel_berkas')->where('tabel_berkas', $id)->first();
+        return view('tabel_berkas', compact('data'));
     }
 
     /**
@@ -51,7 +71,22 @@ class TabelBerkarController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate ([
+            'kk' => 'required',
+            'ijazah' => 'required',
+            'akta' => 'required',
+            'ktp_ortu' => 'required',
+           ]);
+
+           $data = [
+            'kk' => $request->kk,
+            'ijazah' => $request->ijazah,
+            'akta' => $request->akta,
+            'ktp_ortu' => $request->ktp_ortu,
+           ];
+           DB::table('tabel_berkas')->insert($data);
+
+           return redirect()->view('tabel_berkas.index');
     }
 
     /**

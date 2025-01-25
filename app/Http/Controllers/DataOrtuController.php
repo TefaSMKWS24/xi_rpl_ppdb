@@ -66,7 +66,8 @@ class DataOrtuController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $data = DB::table('data_ortu')->where('data_ortu', $id)->first();
+       return view('data_ortu.edit', compact('data'));
     }
 
     /**
@@ -74,7 +75,26 @@ class DataOrtuController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate ([
+            'nama_ayah' => 'required',
+            'nama_ibu' => 'required',
+            'pekerjaan_ayah' => 'required',
+            'pekerjaan_ibu' => 'required',
+            'alamat' => 'required',
+            'telepon' => 'required',
+           ]);
+
+           $data = [
+            'nama_ayah' => $request->nama_ayah,
+            'nama_ibu' => $request->nama_ibu,
+            'pekerjaan_ayah' => $request->pekerjaan_ayah,
+            'pekerjaan_ibu' => $request->pekerjaan_ibu,
+            'alamat' => $request->alamat,
+            'telepon' => $request->telepon,
+           ];
+
+           DB::table('data_ortu')->where('data_ortu', $id)->update($data);
+           return redirect()->view('data_ortu.inex');
     }
 
     /**

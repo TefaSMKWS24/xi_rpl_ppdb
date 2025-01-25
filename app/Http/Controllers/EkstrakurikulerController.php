@@ -31,7 +31,22 @@ class EkstrakurikulerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate ([
+            'nama_ekskul' => 'required',
+            'semester' => 'required',
+            'nilai' => 'required',
+
+           ]);
+
+           $data = [
+            'nama_ekskul' => $request->nama_ekskul,
+            'semester' => $request->semester,
+            'nilai' => $request->nilai,
+           ];
+
+           DB::table('ekstrakurikuler')->insert($data);
+
+           return redirect()->view('ekstrakurikuler.index');
     }
 
     /**
@@ -47,7 +62,8 @@ class EkstrakurikulerController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $data = DB::table('ekstrakurikuler')->where('ekstrakurikuler', $id)->first();
+        return view('ekstrakurikuler.edit', compact('data'));
     }
 
     /**
@@ -55,7 +71,22 @@ class EkstrakurikulerController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate ([
+            'nama_ekskul' => 'required',
+            'semester' => 'required',
+            'nilai' => 'required',
+
+           ]);
+
+           $data = [
+            'nama_ekskul' => $request->nama_ekskul,
+            'semester' => $request->semester,
+            'nilai' => $request->nilai,
+           ];
+           DB::table('ekstrakurikuler')->where('ekstrakurikuler', $id)->update($data);
+           return redirect()->view('ekstrakurikuler.index');
+
+
     }
 
     /**

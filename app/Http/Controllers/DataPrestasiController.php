@@ -64,7 +64,8 @@ class DataPrestasiController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $data = DB::table('data_prestasi')->where('data_prestasi', $id)->first();
+        return view('data_prestasi.edit', compact('data'));
     }
 
     /**
@@ -72,7 +73,24 @@ class DataPrestasiController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate ([
+            'nama_prestasi' => 'required',
+            'tahun' => 'required',
+            'penyelenggara' => 'required',
+            'tempat' => 'required',
+            'piagam' => 'required',
+           ]);
+
+           $data = [
+            'nama_prestasi' => $request->nama_prestasi,
+            'tahun' => $request->tahun,
+            'penyelenggara' => $request->penyelenggara,
+            'tempat' => $request->tempat,
+            'piagam' => $request->piagam,
+           ];
+
+           DB::table('data_prestasi')->where('data_prestasi', $id)->update($data);
+           return redirect()->view('data_prestasi.index');
     }
 
     /**

@@ -32,23 +32,23 @@ class DataWaliController extends Controller
     {
         $request->validate ([
             'nama' => 'required',
-            'a' => 'required',
-            'pekerjaan_ayah' => 'required',
-            'pekerjaan_ibu' => 'required',
+            'pekerjaan' => 'required',
+            'agama' => 'required',
             'alamat' => 'required',
+            'hubungan_dengan_siswa' => 'required',
            ]);
 
            $data = [
-            'nama_ayah' => $request->nama_ayah,
-            'nama_ibu' => $request->nama_ibu,
-            'pekerjaan_ayah' => $request->pekerjaan_ayah,
-            'pekerjaan_ibu' => $request->pekerjaan_ibu,
+            'nama' => $request->nama,
+            'pekerjaan' => $request->pekerjaan,
+            'agama' => $request->agama,
             'alamat' => $request->alamat,
+            'hubungan_dengan_siswa' => $request->hubungan_dengan_siswa,
            ];
 
-           DB::table('data_ortu')->insert($data);
+           DB::table('data_wali')->insert($data);
 
-           return redirect()->view('data_ortu.index');
+           return redirect()->view('data_wali.index');
     }
 
     /**
@@ -64,7 +64,8 @@ class DataWaliController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $data = DB::table('data_wali')->where('data_wali', $id)->first();
+        return view('data_wali.edit', compact('data'));
     }
 
     /**
@@ -72,7 +73,25 @@ class DataWaliController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate ([
+            'nama' => 'required',
+            'pekerjaan' => 'required',
+            'agama' => 'required',
+            'alamat' => 'required',
+            'hubungan_dengan_siswa' => 'required',
+           ]);
+
+           $data = [
+            'nama' => $request->nama,
+            'pekerjaan' => $request->pekerjaan,
+            'agama' => $request->agama,
+            'alamat' => $request->alamat,
+            'hubungan_dengan_siswa' => $request->hubungan_dengan_siswa,
+           ];
+
+
+           DB::table('data_wali')->where('data_wali, $id')->update($data);
+           return redirect()->view('data_wali.iindex');
     }
 
     /**
