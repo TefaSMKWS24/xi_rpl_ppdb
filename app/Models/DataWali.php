@@ -8,4 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class DataWali extends Model
 {
     use HasFactory;
+    protected $table = 'data_wali';
 }
