@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class BiodataOrtu extends Model
 {
     use HasFactory;
+    protected $table = 'biodata_ortu';
+
 }
