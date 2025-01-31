@@ -1,6 +1,18 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\BiodataOrtuController;
+use App\Http\Controllers\BiodataSiswaController;
+use App\Http\Controllers\DataNilaiController;
+use App\Http\Controllers\DataortuController;
+use App\Http\Controllers\DataPendidikanController;
+use App\Http\Controllers\DataPrestasiController;
+use App\Http\Controllers\DataSiswaController;
+use App\Http\Controllers\DataWaliController;
+use App\Http\Controllers\EkstrakurikulerController;
+use App\Http\Controllers\KesehatanController;
+use App\Http\Controllers\TabelBerkarController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -14,17 +26,5 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('guru.index');
+    return view('welcome');
 });
-
-    Route::resource('biodata_ortu',biodataOrtuController::class);
-    Route::resource('biodata_siswa',BiodataSiswaController::class);
-    Route::resource('data_nilai',DataNilaiController::class);
-    Route::resource('data_ortu',DataOrtuController::class);
-    Route::resource('data_pendidikan',DataPendidikanController::class);
-    Route::resource('data_prestasi',DataPrestasiController::class);
-    Route::resource('data_siswa',DataSiswaController::class);
-    Route::resource('data_wali',DataWaliController::class);
-    Route::resource('ekstrakurikuler',EkstrakurikulerController::class);
-    Route::resource('kesehatan',KesehatanController::class);
-    Route::resource('tabel_berkas',TabelBerkasController::class);

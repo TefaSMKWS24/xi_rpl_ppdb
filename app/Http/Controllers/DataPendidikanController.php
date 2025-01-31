@@ -94,6 +94,7 @@ class DataPendidikanController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        DB::table('data_pendidikan')->where('data_pendidikan', $id)->delete();
+           return redirect()->view('data_pendidikan.index');
     }
 }

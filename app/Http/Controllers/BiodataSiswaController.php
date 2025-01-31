@@ -110,6 +110,7 @@ class BiodataSiswaController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        DB::table('biodata_siswa')->where('biodata_siswa', $id)->delete();
+        return redirect()->view('biodata_siswa.index');
     }
 }

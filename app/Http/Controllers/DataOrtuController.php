@@ -102,6 +102,7 @@ class DataOrtuController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        DB::table('data_ortu')->where('data_ortu', $id)->delete();
+        return redirect()->view('data_ortu.inex');
     }
 }

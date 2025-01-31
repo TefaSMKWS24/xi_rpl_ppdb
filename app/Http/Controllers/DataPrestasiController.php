@@ -98,6 +98,7 @@ class DataPrestasiController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        DB::table('data_prestasi')->where('data_prestasi', $id)->delete();
+           return redirect()->view('data_prestasi.index');
     }
 }
