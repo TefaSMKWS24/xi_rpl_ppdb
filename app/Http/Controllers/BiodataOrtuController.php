@@ -110,6 +110,6 @@ class BiodataOrtuController extends Controller
      */
     public function destroy(string $id)
     {
-        //
-    }
+        DB::table('biodata_ortu')->where('biodata_ortu', $id)->delete();
+        return redirect()->view('biodata_ortu.index');    }
 }

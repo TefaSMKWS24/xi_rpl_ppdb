@@ -94,6 +94,7 @@ class KesehatanController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        DB::table('kesehatan')->where('kesehatan', $id)->delete();
+           return redirect()->view('kesehatan.index');
     }
 }

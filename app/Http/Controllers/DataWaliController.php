@@ -99,6 +99,7 @@ class DataWaliController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        DB::table('data_wali')->where('data_wali, $id')->update($data);
+           return redirect()->view('data_wali.iindex');
     }
 }

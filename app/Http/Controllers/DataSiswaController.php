@@ -135,6 +135,7 @@ class DataSiswaController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        DB::table('data_siswa')->where('data_siswa', $id)->delete();
+               return redirect()->view('data_siswa.index');
     }
 }

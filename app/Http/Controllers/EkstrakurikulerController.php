@@ -94,6 +94,8 @@ class EkstrakurikulerController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        DB::table('ekstrakurikuler')->where('ekstrakurikuler', $id)->delete();
+           return redirect()->view('ekstrakurikuler.index');
+
     }
 }

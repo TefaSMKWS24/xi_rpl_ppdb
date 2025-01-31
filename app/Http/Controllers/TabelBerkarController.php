@@ -84,8 +84,7 @@ class TabelBerkarController extends Controller
             'akta' => $request->akta,
             'ktp_ortu' => $request->ktp_ortu,
            ];
-           DB::table('tabel_berkas')->insert($data);
-
+           DB::table('tabel_berkas')->where('tabel_berkas', $id)->update($data);
            return redirect()->view('tabel_berkas.index');
     }
 
@@ -94,6 +93,7 @@ class TabelBerkarController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        DB::table('tabel_berkas')->where('tabel_berkas', $id)->delete();
+           return redirect()->view('tabel_berkas.index');
     }
 }

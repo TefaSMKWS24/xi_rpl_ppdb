@@ -89,6 +89,7 @@ class DataNilaiControler extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        DB::table('data_nilai')->where('data_nilai', $id)->delete();
+           return redirect()->view('data_nilai.index');
     }
 }
