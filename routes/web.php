@@ -14,5 +14,17 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('guru.index');
 });
+
+    Route::resource('biodata_ortu',biodataOrtuController::class);
+    Route::resource('biodata_siswa',BiodataSiswaController::class);
+    Route::resource('data_nilai',DataNilaiController::class);
+    Route::resource('data_ortu',DataOrtuController::class);
+    Route::resource('data_pendidikan',DataPendidikanController::class);
+    Route::resource('data_prestasi',DataPrestasiController::class);
+    Route::resource('data_siswa',DataSiswaController::class);
+    Route::resource('data_wali',DataWaliController::class);
+    Route::resource('ekstrakurikuler',EkstrakurikulerController::class);
+    Route::resource('kesehatan',KesehatanController::class);
+    Route::resource('tabel_berkas',TabelBerkasController::class);
