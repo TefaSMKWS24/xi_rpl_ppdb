@@ -25,18 +25,6 @@ use App\Http\Controllers\TabelBerkarController;
 |
 */
 
-Route::get('/index', function () {
-    return view('guru.index');
+Route::get('/', function () {
+    return view('welcome');
 });
-
-route::resource('biodata_ortu', BiodataOrtuController::class);
-route::resource('biodata_siswa', BiodataSiswaController::class);
-route::resource('data_nilai', DataNilaiController::class);
-route::resource('data_ortu', DataOrtuController::class);
-route::resource('data_pendidikan', DataPendidikanController::class);
-route::resource('data_prestasi', DataPrestasiController::class);
-route::resource('data_siswa', DataSiswaController::class);
-route::resource('data_wali', DataWaliController::class);
-route::resource('ekstrakurikuler', EkstrakurikulerController::class);
-route::resource('kesehatan', KesehatanController::class);
-route::resource('tabel_berkas', TabelBerkasController::class);
