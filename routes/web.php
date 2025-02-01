@@ -62,7 +62,7 @@ Route::middleware(['auth:admin'])->group(function(){
     Route::get('/admin/dashboard', [DashboardAdminController::class, 'dashboard']);
     Route::get('/admin/logout', [AuthController::class, 'logoutadmin']);
 
-    Route::resource('biodata_ortu', BiodataOrtuController::class);
+    Route::resource('biodata_ortu', BiodataOrtuController::class)
     Route::resource('biodata_siswa', BiodataSiswaController::class);
     Route::resource('data_nilai', DataNilaiController::class);
     Route::resource('data_ortu', DataOrtuController::class);
